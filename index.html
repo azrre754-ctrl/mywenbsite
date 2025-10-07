@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POKEMON GO SPOOFER</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #007bff;
-            --light-blue: #e0f7fa;
-            --dark-blue: #0056b3;
-            --white: #ffffff;
+            --primary-bg: #f9f9f9;
+            --secondary-bg: #ffffff;
             --text-color: #333;
-            --shadow-light: rgba(0, 0, 0, 0.1);
-            --shadow-medium: rgba(0, 0, 0, 0.2);
+            --light-gray: #eee;
+            --border-color: #ddd;
+            --accent-yellow: #ffeb3b;
+            --dark-gray: #555;
+            --shadow: 0 4px 8px rgba(0,0,0,0.05);
+            --border-radius: 8px;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            background: linear-gradient(135deg, var(--white), var(--light-blue));
+            background-color: var(--primary-bg);
             color: var(--text-color);
             line-height: 1.6;
         }
@@ -33,285 +33,457 @@
             padding: 20px;
         }
 
-        /* Header */
         header {
-            background-color: var(--white);
-            padding: 15px 0;
-            box-shadow: 0 4px 8px var(--shadow-light);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
+            background-color: var(--secondary-bg);
+            padding: 15px 20px;
+            box-shadow: var(--shadow);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
-        .logo {
-            font-size: 1.8em;
+        header .logo {
+            font-size: 24px;
             font-weight: 700;
-            color: var(--primary-blue);
-        }
-
-        .nav-links a {
             color: var(--text-color);
             text-decoration: none;
-            margin-left: 25px;
-            font-weight: 600;
-            transition: color 0.3s ease, transform 0.3s ease;
+            flex-shrink: 0;
+            margin-right: 20px;
         }
 
-        .nav-links a:hover {
-            color: var(--primary-blue);
+        nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav .nav-item {
+            display: inline-block;
+            margin-left: 20px;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: var(--text-color);
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s ease;
+        }
+
+        nav .nav-item:hover {
+            background-color: var(--light-gray);
+        }
+
+        nav .nav-item.highlighted {
+            background-color: var(--accent-yellow);
+            color: #000; /* Pure black */
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #e0e0e0, #f0f0f0);
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+        }
+
+        .hero .download-btn {
+            display: inline-block;
+            background-color: var(--accent-yellow);
+            color: #000; /* Pure black */
+            padding: 15px 40px;
+            font-size: 22px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .hero .download-btn:hover {
+            background-color: #fdd835;
             transform: translateY(-2px);
         }
 
-        /* Hero Section */
-        .hero-section {
+        section {
+            background-color: var(--secondary-bg);
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        h2 {
+            font-size: 32px;
             text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(180deg, var(--light-blue) 0%, var(--white) 100%);
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
             margin-bottom: 40px;
-        }
-
-        .hero-section h1 {
-            font-size: 3.5em;
-            color: var(--primary-blue);
-            margin-bottom: 15px;
-            font-weight: 700;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .hero-section p {
-            font-size: 1.3em;
             color: var(--text-color);
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-            animation: fadeIn 1.2s ease-out;
-        }
-
-        /* Screenshots Section */
-        .screenshots-section {
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .screenshots-section h2 {
-            font-size: 2.5em;
-            color: var(--primary-blue);
-            margin-bottom: 40px;
             font-weight: 700;
         }
 
-        .screenshot-grid {
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .feature-item {
+            padding: 25px;
+            border-radius: var(--border-radius);
+            background-color: var(--primary-bg);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-item .icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px auto;
+            border-radius: 50%;
+            background-color: var(--accent-yellow);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            color: #000;
+            font-weight: 700;
+        }
+
+        .feature-item h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .version-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .version-info div {
+            text-align: center;
+        }
+
+        .version-info span {
+            display: block;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .version-info small {
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+
+        .screenshot-gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        .screenshot-item {
-            flex: 1 1 300px; /* Allows items to grow/shrink, max 300px width */
+        .screenshot-gallery img {
+            width: 100%;
             max-width: 350px;
-            background-color: var(--white);
-            border-radius: 20px;
-            box-shadow: 0 8px 16px var(--shadow-medium);
-            overflow: hidden;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .screenshot-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px var(--shadow-medium);
+        .screenshot-gallery img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
 
-        .screenshot-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 20px; /* Apply to image directly for consistent look */
-            object-fit: cover;
+        .why-choose-us ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
-        /* Contact Section */
-        .contact-section {
-            padding: 80px 20px;
-            text-align: center;
-            background-color: var(--primary-blue);
-            color: var(--white);
-            border-top-left-radius: 50px;
-            border-top-right-radius: 50px;
-            margin-top: 60px;
+        .why-choose-us li {
+            background-color: var(--primary-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
         }
 
-        .contact-section h2 {
-            font-size: 2.5em;
+        .why-choose-us li::before {
+            content: '✓';
+            color: green;
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 1;
+            margin-top: 2px;
+        }
+
+        .faq-item {
             margin-bottom: 20px;
-            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
         }
 
-        .social-icons {
-            margin-top: 30px;
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-item h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .faq-item p {
+            color: var(--dark-gray);
+        }
+
+        .contact-us {
+            text-align: center;
+            padding-bottom: 40px;
+        }
+
+        .contact-us .social-icons {
+            margin-top: 20px;
             display: flex;
             justify-content: center;
             gap: 30px;
         }
 
-        .social-icons a {
-            color: var(--white);
-            font-size: 3em;
-            transition: transform 0.3s ease, color 0.3s ease;
+        .contact-us .social-icon {
+            width: 50px;
+            height: 50px;
+            fill: var(--text-color);
+            transition: fill 0.3s ease, transform 0.3s ease;
         }
 
-        .social-icons a:hover {
+        .contact-us .social-icon:hover {
+            fill: var(--accent-yellow);
             transform: scale(1.1);
-            color: var(--dark-blue);
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 30px 20px;
-            background-color: var(--dark-blue);
-            color: var(--white);
-            font-size: 0.9em;
+            margin-top: 40px;
+            background-color: var(--secondary-bg);
+            color: var(--dark-gray);
+            font-size: 14px;
+            border-top: 1px solid var(--light-gray);
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.03);
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive Design */
+        /* Mobile responsiveness */
         @media (max-width: 768px) {
-            .navbar {
+            header {
                 flex-direction: column;
+                align-items: flex-start;
             }
-
-            .nav-links {
+            nav {
+                width: 100%;
+                justify-content: center;
                 margin-top: 15px;
             }
-
-            .nav-links a {
-                margin: 0 10px;
+            nav .nav-item {
+                margin: 0 10px 10px 10px;
             }
-
-            .hero-section h1 {
-                font-size: 2.5em;
+            nav .nav-item.highlighted {
+                margin-bottom: 10px;
             }
-
-            .hero-section p {
-                font-size: 1.1em;
+            .hero {
+                padding: 60px 20px;
             }
-
-            .screenshots-section h2,
-            .contact-section h2 {
-                font-size: 2em;
+            .hero h1 {
+                font-size: 38px;
             }
-
-            .social-icons a {
-                font-size: 2.5em;
+            .hero p {
+                font-size: 18px;
             }
-        }
-
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 1.5em;
+            .hero .download-btn {
+                font-size: 20px;
+                padding: 12px 30px;
             }
-
-            .nav-links a {
-                display: block;
-                margin: 10px 0;
+            h2 {
+                font-size: 28px;
             }
-
-            .hero-section h1 {
-                font-size: 2em;
+            .features-grid {
+                grid-template-columns: 1fr;
             }
-
-            .hero-section p {
-                font-size: 1em;
+            .why-choose-us ul {
+                grid-template-columns: 1fr;
             }
-
-            .screenshots-section h2,
-            .contact-section h2 {
-                font-size: 1.8em;
+            .version-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .screenshot-gallery img {
+                max-width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container navbar">
-            <div class="logo">POKEMON GO SPOOFER</div>
-            <nav class="nav-links">
-                <a href="#screenshots">Screenshots</a>
-                <a href="#contact">Contact</a>
-            </nav>
-        </div>
+        <a href="#" class="logo">POKEMON GO SPOOFER</a>
+        <nav>
+            <a href="#hero" class="nav-item">Home</a>
+            <a href="#features" class="nav-item">Features</a>
+            <a href="#screenshots" class="nav-item">Screenshots</a>
+            <a href="#faq" class="nav-item">FAQ</a>
+            <a href="https://applocked.org/cl/i/1x566e" target="_blank" class="nav-item highlighted">POKEMON GO SPOOFER</a>
+        </nav>
     </header>
 
-    <main>
-        <section class="hero-section">
-            <div class="container">
-                <h1>Play Anywhere, Anytime!</h1>
-                <p>With our spoofer you get a full set of tools to help you be the best for free.</p>
-            </div>
+    <main class="container">
+        <section id="hero" class="hero">
+            <h1>Play Anywhere, Anytime!</h1>
+            <p>With our spoofer you get a full set of tools to help you be the best for free.</p>
+            <a href="https://applocked.org/cl/i/1x566e" target="_blank" class="download-btn">Download Now</a>
         </section>
 
-        <section id="screenshots" class="screenshots-section">
-            <div class="container">
-                <h2>Screenshots</h2>
-                <div class="screenshot-grid">
-                    <div class="screenshot-item">
-                        <img src="spooferx-interface.jpg" alt="Spoofer Interface Screenshot 1">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="Picture17.png" alt="Spoofer Interface Screenshot 2">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="post-3.webp" alt="Spoofer Interface Screenshot 3">
-                    </div>
+        <section id="features">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="icon">📍</div>
+                    <h3>Location Spoofing</h3>
+                    <p>Teleport to any location in the world instantly and catch rare Pokémon.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">⚡</div>
+                    <h3>Enhanced Catch Rate</h3>
+                    <p>Improve your chances of catching Pokémon with advanced tools.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🚀</div>
+                    <h3>Speed Control</h3>
+                    <p>Adjust your in-game walking speed for efficient exploration and egg hatching.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">💎</div>
+                    <h3>Shiny Radar</h3>
+                    <p>Never miss a shiny again with real-time notifications for nearby rare Pokémon.</p>
+                </div>
+            </div>
+            <div class="version-info">
+                <div>
+                    <span>Version 2.7.1</span>
+                    <small>Latest Release</small>
+                </div>
+                <div>
+                    <span>25.5 MB</span>
+                    <small>File Size</small>
+                </div>
+                <div>
+                    <span>Windows, Android, iOS</span>
+                    <small>Compatible Platforms</small>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="contact-section">
-            <div class="container">
-                <h2>Contact Us</h2>
-                <p>Follow us on social media:</p>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/go_pikatchu?utm_source=ig_web_button_share_sheet&igsh=OWRkbmM4cGk2amNy" target="_blank" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://www.tiktok.com/@go_pikatchu?is_from_webapp=1&sender_device=pc" target="_blank" aria-label="TikTok">
-                        <i class="fab fa-tiktok"></i>
-                    </a>
-                </div>
+        <section id="screenshots">
+            <h2>Screenshots</h2>
+            <div class="screenshot-gallery">
+                <img src="spooferx-interface.jpg" alt="Spoofer Interface">
+                <img src="Picture17.png" alt="In-Game Map View">
+                <img src="post-3.webp" alt="Settings Menu">
             </div>
         </section>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 POKEMON GO SPOOFER. All rights reserved.</p>
-        </div>
-    </footer>
+        <section class="why-choose-us">
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>
+                    <div>
+                        <h3>Reliable Performance</h3>
+                        <p>Enjoy stable and consistent performance across all supported devices.</p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <h3>User-Friendly Interface</h3>
+                        <p>Our intuitive design makes it easy for anyone to use, even beginners.</p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <h3>Regular Updates</h3>
+                        <p>We constantly update our tool to ensure compatibility and add new features.</p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <h3>Dedicated Support</h3>
+                        <p>Our team is ready to assist you with any questions or issues.</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
 
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+        <section id="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>Is it easy to set up?</h3>
+                <p>Yes, our tool is designed for quick and easy setup, allowing you to get started in minutes.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What devices are supported?</h3>
+                <p>Our tool supports a wide range of devices including Windows PCs, Android phones, and iOS devices.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do I need any technical knowledge?</h3>
+                <p>No, the tool is designed to be user-friendly and does not require any advanced technical skills to operate.</p>
+            </div>
+        </section>
 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+        <section class="contact-us">
+            <h2>Contact Us</h2>
+            <p>Follow us on social media:</p>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/go_pikatchu?utm_source=ig_web_button_share_sheet&igsh=OWRkbmM4cGk2amNy" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.071 1.17.055 1.805.249 2.227.462.54.275.955.639 1.304.988.35.349.714.764.989 1.304.213.422.406 1.057.462 2.227.06 1.266.071 1.646.071 4.85s-.012 3.585-.071 4.85c-.055 1.17-.249 1.805-.462 2.227-.275.54-.639.955-.989 1.304-.349.35-.764.714-1.304.989-.422.213-1.057.406-2.227.462-1.267.06-1.646.071-4.85.071s-3.585-.012-4.85-.071c-1.17-.055-1.805-.249-2.227-.462-.54-.275-.955-.639-1.304-.989-.35-.349-.714-.764-.989-1.304-.213-.422-.406-1.057-.462-2.227-.06-1.266-.071-1.646-.071-4.85s.012-3.585.071-4.85c.055-1.17.249-1.805.462-2.227.275-.54.639-.955.989-1.304.349-.35.764-.714 1.304-.989.422-.213 1.057-.406 2.227-.462 1.267-.06 1.646-.071 4.85-.071zm0-2.163c-3.259 0-3.667.014-4.947.072-1.31.062-2.104.269-2.684.551-.64.316-1.164.757-1.605 1.198-.44.441-.882.964-1.198 1.604-.282.58-.489 1.374-.551 2.685-.058 1.28-.072 1.688-.072 4.947s.014 3.668.072 4.947c.062 1.31.269 2.104.551 2.685.316.64.757 1.164 1.198 1.604.441.441.964.882 1.604 1.199.58.281 1.374.488 2.685.55s1.688.072 4.947.072 3.668-.014 4.947-.072c1.31-.062 2.104-.269 2.684-.551.64-.316 1.164-.757 1.605-1.198.44-.441.882-.964 1.198-1.604.282-.58.489-1.374.551-2.685.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.062-1.31-.269-2.104-.551-2.684-.316-.64-.757-1.164-1.198-1.605-.441-.44-.964-.882-1.604-1.198-.58-.282-1.374-.489-2.685-.551-1.28-.058-1.688-.072-4.947-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.163c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.44.644-1.44 1.44s.644 1.44 1.44 1.44 1.44-.644 1.44-1.44-.644-1.44-1.44-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://www.tiktok.com/@go_pikatchu?is_from_webapp=1&sender_device=pc" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M12.525 2.152a1.096 1.096 0 00-.916.143 1.055 1.055 0 00-.518.816v8.428a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502H8.557a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3
