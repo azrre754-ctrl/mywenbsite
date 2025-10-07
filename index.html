@@ -4,29 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POKEMON GO SPOOFER</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-bg: #1a1a1a;
             --secondary-bg: #2a2a2a;
-            --card-bg: #333;
             --text-color: #f0f0f0;
             --accent-yellow: #FFD700;
-            --accent-text-dark: #000;
-            --border-radius: 8px;
-            --shadow: rgba(0, 0, 0, 0.2);
+            --button-text: #000;
+            --card-bg: #333;
+            --border-color: #444;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--primary-bg);
             color: var(--text-color);
             line-height: 1.6;
-            scroll-behavior: smooth;
         }
 
         .container {
@@ -35,11 +31,10 @@
             padding: 20px;
         }
 
-        /* Header */
         header {
             background-color: var(--secondary-bg);
             padding: 15px 0;
-            box-shadow: 0 2px 10px var(--shadow);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -53,105 +48,90 @@
         }
 
         .logo {
-            font-size: 24px;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
+            font-size: 24px;
             color: var(--text-color);
             text-decoration: none;
         }
 
-        .nav-links {
-            display: none; /* Hidden by default for mobile */
+        .nav-menu {
+            display: flex;
+            align-items: center;
             list-style: none;
             margin: 0;
             padding: 0;
-            align-items: center;
         }
 
-        .nav-links.active {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            top: 60px; /* Adjust based on header height */
-            right: 0;
-            background-color: var(--secondary-bg);
-            width: 100%;
-            box-shadow: 0 2px 10px var(--shadow);
+        .nav-item {
+            margin-left: 25px;
         }
 
-        .nav-links li {
-            margin-left: 20px;
-            padding: 10px 0;
-            width: 100%;
-            text-align: center;
-        }
-
-        .nav-links a {
+        .nav-link {
             color: var(--text-color);
             text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
+            font-weight: 600;
             transition: color 0.3s ease;
         }
 
-        .nav-links a:hover {
+        .nav-link:hover {
             color: var(--accent-yellow);
         }
 
-        .nav-toggle {
-            display: block;
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 24px;
-            cursor: pointer;
-            padding: 5px;
-            position: relative; /* For aligning to the right */
-        }
-        
-        .nav-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-color);
-            margin: 5px 0;
-            transition: 0.4s;
-        }
-
-        .spoof-tab {
+        .highlight-tab {
             background-color: var(--accent-yellow);
-            color: var(--accent-text-dark);
+            color: var(--button-text);
             padding: 10px 20px;
             border-radius: 50px;
-            font-weight: 700;
             text-decoration: none;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
             transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             white-space: nowrap;
-            display: inline-block; /* To make padding work */
-            margin-left: auto; /* Push to the far right */
         }
 
-        .spoof-tab:hover {
-            background-color: #e6b800;
+        .highlight-tab:hover {
+            background-color: #e6c200;
             transform: translateY(-2px);
         }
 
-        /* Hero Section */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger-menu span {
+            height: 3px;
+            width: 25px;
+            background-color: var(--text-color);
+            margin-bottom: 5px;
+            border-radius: 2px;
+        }
+
         .hero {
-            text-align: center;
-            padding: 100px 20px;
             background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .hero h1 {
-            font-size: 3.5em;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
             margin-bottom: 15px;
             color: var(--text-color);
-            font-weight: 700;
         }
 
         .hero p {
-            font-size: 1.3em;
-            margin-bottom: 40px;
+            font-size: 20px;
+            margin-bottom: 30px;
             color: #ccc;
             max-width: 700px;
             margin-left: auto;
@@ -160,38 +140,34 @@
 
         .download-btn {
             background-color: var(--accent-yellow);
-            color: var(--accent-text-dark);
-            padding: 18px 40px;
-            font-size: 1.2em;
-            font-weight: 700;
-            text-decoration: none;
+            color: var(--button-text);
+            padding: 15px 40px;
             border-radius: 50px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 22px;
             display: inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
 
         .download-btn:hover {
-            background-color: #e6b800;
+            background-color: #e6c200;
             transform: translateY(-3px);
-            box-shadow: 0 8px 15px var(--shadow);
         }
 
-        /* Section Styling */
         section {
-            padding: 80px 0;
+            padding: 60px 0;
             text-align: center;
-            background-color: var(--primary-bg);
-        }
-
-        section:nth-of-type(even) {
-            background-color: var(--secondary-bg);
         }
 
         section h2 {
-            font-size: 2.5em;
-            margin-bottom: 60px;
-            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
             font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--text-color);
             position: relative;
             display: inline-block;
         }
@@ -200,353 +176,333 @@
             content: '';
             position: absolute;
             left: 50%;
-            bottom: -15px;
+            bottom: -10px;
             transform: translateX(-50%);
-            width: 80px;
+            width: 60px;
             height: 4px;
             background-color: var(--accent-yellow);
             border-radius: 2px;
         }
 
-        /* Features */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 60px;
+            margin-top: 50px;
+            padding: 0 20px;
         }
 
         .feature-item {
             background-color: var(--card-bg);
             padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px var(--shadow);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
         }
 
         .feature-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px var(--shadow);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
         .feature-icon {
-            margin-bottom: 20px;
             width: 60px;
             height: 60px;
+            margin: 0 auto 20px;
             background-color: var(--accent-yellow);
             border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
-            margin-left: auto;
-            margin-right: auto;
-            color: var(--accent-text-dark);
-            font-size: 2.2em;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--button-text);
             font-weight: 700;
+        }
+        
+        .feature-icon svg {
+            fill: var(--button-text);
+            width: 30px;
+            height: 30px;
         }
 
         .feature-item h3 {
-            font-size: 1.4em;
-            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            margin-bottom: 15px;
             color: var(--text-color);
         }
 
         .feature-item p {
-            color: #ccc;
+            font-size: 16px;
+            color: #bbb;
         }
 
-        /* Version Info */
         .version-info {
             background-color: var(--card-bg);
             padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px var(--shadow);
-            margin-top: 60px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            margin: 60px auto 0;
+            max-width: 600px;
+            border: 1px solid var(--border-color);
+        }
+
+        .version-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
         }
 
-        .version-item {
-            text-align: center;
-            margin: 10px;
+        .version-info li {
+            font-size: 18px;
+            margin: 10px 20px;
+            color: #ddd;
         }
 
-        .version-item strong {
-            display: block;
-            font-size: 1.2em;
-            margin-bottom: 5px;
-            color: var(--text-color);
-        }
-
-        .version-item span {
-            color: #ccc;
-        }
-
-        /* Screenshot Gallery */
-        .screenshot-gallery {
+        .gallery-grid {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             gap: 30px;
-            margin-top: 60px;
+            margin-top: 50px;
+            flex-wrap: wrap;
         }
 
-        .screenshot-item img {
-            max-width: 100%;
+        .gallery-item {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 350px; /* Adjust max-width for image size */
+            width: 100%;
+            border: 1px solid var(--border-color);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
             height: auto;
-            border-radius: var(--border-radius);
-            box-shadow: 0 5px 20px var(--shadow);
-            transition: transform 0.3s ease;
-            max-height: 400px; /* Limit height for uniform look */
-            object-fit: cover;
+            display: block;
+            border-radius: 15px; /* Apply rounded corners to the image as well */
         }
 
-        .screenshot-item img:hover {
-            transform: scale(1.03);
-        }
-
-        /* Why Choose Us */
-        .why-us-grid {
+        .why-choose-us-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 60px;
+            margin-top: 50px;
+            padding: 0 20px;
         }
 
-        .why-us-item {
+        .why-item {
             background-color: var(--card-bg);
             padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px var(--shadow);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             text-align: left;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
         }
 
-        .why-us-item:hover {
-            transform: translateY(-5px);
+        .why-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
-        .why-us-item h3 {
-            font-size: 1.5em;
+        .why-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
             margin-bottom: 15px;
             color: var(--text-color);
         }
 
-        .why-us-item p {
-            color: #ccc;
-        }
-
-        /* FAQ */
-        .faq-list {
-            margin-top: 60px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: left;
+        .why-item p {
+            font-size: 16px;
+            color: #bbb;
         }
 
         .faq-item {
             background-color: var(--card-bg);
+            padding: 25px;
             margin-bottom: 20px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 5px 10px var(--shadow);
-            overflow: hidden;
+            border-radius: 10px;
+            text-align: left;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
         }
 
-        .faq-question {
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 500;
-            font-size: 1.1em;
-            color: var(--text-color);
-            transition: background-color 0.3s ease;
+        .faq-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--accent-yellow);
         }
 
-        .faq-question:hover {
-            background-color: #444;
+        .faq-item p {
+            font-size: 16px;
+            color: #ddd;
         }
 
-        .faq-question::after {
-            content: '+';
-            font-size: 1.5em;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-question.active::after {
-            content: '-';
-            transform: rotate(180deg);
-        }
-
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-            color: #ccc;
-        }
-
-        .faq-answer.active {
-            max-height: 150px; /* Adjust as needed for content */
-            padding-bottom: 20px;
-        }
-
-        /* Contact Us */
         .contact-us {
             text-align: center;
-            padding: 80px 0;
-            background-color: var(--primary-bg);
-        }
-
-        .contact-us h2 {
-            margin-bottom: 30px;
+            padding-bottom: 80px;
         }
 
         .social-icons {
             display: flex;
             justify-content: center;
             gap: 25px;
-            margin-top: 30px;
+            margin-top: 25px;
         }
 
-        .social-icon {
+        .social-icon a {
+            display: block;
             width: 50px;
             height: 50px;
-            background-color: var(--card-bg);
             border-radius: 50%;
+            background-color: var(--card-bg);
             display: flex;
-            justify-content: center;
             align-items: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 3px 10px var(--shadow);
+            justify-content: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .social-icon:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px var(--shadow);
+        .social-icon a:hover {
+            background-color: var(--accent-yellow);
+            transform: translateY(-3px);
         }
 
         .social-icon svg {
             width: 30px;
             height: 30px;
             fill: var(--text-color);
+            transition: fill 0.3s ease;
         }
 
-        /* Footer */
+        .social-icon a:hover svg {
+            fill: var(--button-text);
+        }
+
         footer {
             background-color: var(--secondary-bg);
-            color: #999;
+            padding: 25px 0;
             text-align: center;
-            padding: 30px 20px;
-            font-size: 0.9em;
-            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #aaa;
+            border-top: 1px solid var(--border-color);
         }
 
-        .legal-note {
+        .disclaimer {
             margin-top: 20px;
-            font-style: italic;
+            font-size: 13px;
+            color: #777;
         }
 
-        /* Mobile specific styling */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-wrap: wrap;
-                justify-content: space-between;
-            }
+        /* Mobile Nav Specific Styles */
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
 
+        .mobile-nav-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .mobile-nav-overlay .nav-link,
+        .mobile-nav-overlay .highlight-tab {
+            font-size: 28px;
+            margin: 20px 0;
+            padding: 15px 30px;
+            border-radius: 10px;
+            color: var(--text-color);
+            background: none;
+            display: block;
+            width: fit-content;
+        }
+
+        .mobile-nav-overlay .highlight-tab {
+            background-color: var(--accent-yellow);
+            color: var(--button-text);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 40px;
+            color: var(--text-color);
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        @media (max-width: 900px) {
+            .nav-menu {
+                display: none;
+            }
+            .hamburger-menu {
+                display: flex;
+                margin-left: auto;
+            }
             .logo {
-                margin-right: auto;
+                font-size: 20px;
             }
-
-            .nav-links {
-                flex-direction: column;
-                width: 100%;
-                background-color: var(--secondary-bg);
-                position: absolute;
-                top: 70px; /* Below the header */
-                left: 0;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-                border-top: 1px solid #444;
-                display: none; /* Hide by default */
-            }
-
-            .nav-links.active {
-                display: flex; /* Show when active */
-            }
-
-            .nav-links li {
-                margin: 0;
-                border-bottom: 1px solid #333;
-            }
-
-            .nav-links li:last-child {
-                border-bottom: none;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 15px 20px;
-                text-align: left;
-            }
-
-            .nav-toggle {
-                display: block; /* Show hamburger icon */
-            }
-            
-            .spoof-tab {
-                margin-left: 0; /* No margin-left auto on small screens */
-                order: 1; /* Keep it in the flow */
-                width: auto; /* Adjust width */
-            }
-
             .hero h1 {
-                font-size: 2.5em;
+                font-size: 38px;
             }
-
             .hero p {
-                font-size: 1em;
+                font-size: 18px;
             }
-
-            section {
-                padding: 60px 0;
+            .download-btn {
+                font-size: 20px;
+                padding: 12px 30px;
             }
-
             section h2 {
-                font-size: 2em;
-                margin-bottom: 40px;
+                font-size: 30px;
             }
-
-            .features-grid, .why-us-grid {
+            .features-grid, .why-choose-us-grid, .gallery-grid {
                 grid-template-columns: 1fr;
+                gap: 25px;
             }
-
-            .screenshot-item img {
-                max-height: 300px;
-            }
-
-            .version-info {
+            .gallery-grid {
                 flex-direction: column;
+                align-items: center;
             }
-
-            .version-item {
-                margin-bottom: 15px;
+            .gallery-item {
+                max-width: 90%;
             }
-        }
-        
-        @media (min-width: 769px) {
-            .nav-links {
-                display: flex; /* Always show on desktop */
+            .version-info {
+                padding: 20px;
+                max-width: 90%;
             }
-            .nav-toggle {
-                display: none; /* Hide hamburger on desktop */
-            }
-            .spoof-tab {
-                margin-left: 20px; /* Add space on desktop */
-                order: initial; /* Reset order */
+            .version-info ul {
+                flex-direction: column;
+                gap: 10px;
             }
         }
     </style>
@@ -555,193 +511,164 @@
     <header>
         <div class="navbar container">
             <a href="#" class="logo">POKEMON GO SPOOFER</a>
-            <button class="nav-toggle" aria-label="Toggle navigation">
+            <div class="hamburger-menu" onclick="toggleMobileNav()">
                 <span></span>
                 <span></span>
                 <span></span>
-            </button>
-            <nav>
-                <ul class="nav-links" id="navbarNav">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#screenshots">Screenshots</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="https://applocked.org/cl/i/1x566e" target="_blank" class="spoof-tab">POKEMON GO SPOOFER</a></li>
-                </ul>
-            </nav>
+            </div>
         </div>
     </header>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="container">
-                <h1>Play Anywhere, Anytime!</h1>
-                <p>With our spoofer you get a full set of tools to help you be the best for free.</p>
-                <a href="https://applocked.org/cl/i/1x566e" target="_blank" class="download-btn">Download Now</a>
-            </div>
-        </section>
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <span class="close-btn" onclick="toggleMobileNav()">&times;</span>
+        <a href="#features" class="nav-link" onclick="toggleMobileNav()">Features</a>
+        <a href="#screenshots" class="nav-link" onclick="toggleMobileNav()">Screenshots</a>
+        <a href="#why-choose-us" class="nav-link" onclick="toggleMobileNav()">Why Choose Us</a>
+        <a href="#faq" class="nav-link" onclick="toggleMobileNav()">FAQ</a>
+        <a href="https://applocked.org/cl/i/1x566e" target="_blank" class="highlight-tab" onclick="toggleMobileNav()">POKEMON GO SPOOFER</a>
+    </div>
 
-        <section id="features">
-            <div class="container">
-                <h2>Key Features</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-icon">✨</div>
-                        <h3>Advanced Spoofing</h3>
-                        <p>Teleport to any location instantly with precision.</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🚀</div>
-                        <h3>Fast Catch</h3>
-                        <p>Optimize your catching speed for maximum efficiency.</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🔍</div>
-                        <h3>Enhanced Radar</h3>
-                        <p>Locate rare Pokémon and lucrative raids easily.</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🛡️</div>
-                        <h3>Secure & Stable</h3>
-                        <p>Enjoy a smooth experience with robust performance.</p>
-                    </div>
-                </div>
-                <div class="version-info">
-                    <div class="version-item">
-                        <strong>Version:</strong>
-                        <span>5.2.1</span>
-                    </div>
-                    <div class="version-item">
-                        <strong>File Size:</strong>
-                        <span>75 MB</span>
-                    </div>
-                    <div class="version-item">
-                        <strong>Last Updated:</strong>
-                        <span>Oct 26, 2023</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <section class="hero">
+        <div class="container">
+            <h1>Play Anywhere, Anytime!</h1>
+            <p>With our spoofer you get a full set of tools to help you be the best for free.</p>
+            <a href="https://applocked.org/cl/i/1x566e" target="_blank" class="download-btn">Download Now</a>
+        </div>
+    </section>
 
-        <section id="screenshots">
-            <div class="container">
-                <h2>Screenshots</h2>
-                <div class="screenshot-gallery">
-                    <div class="screenshot-item">
-                        <img src="spooferx-interface.jpg" alt="Spoofer Interface">
+    <section id="features">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15L6 12l1.41-1.41L11 14.17l4.59-4.59L17 11l-6 6z"/></svg>
                     </div>
-                    <div class="screenshot-item">
-                        <img src="Picture17.png" alt="In-game Map View">
+                    <h3>Teleport & Joystick</h3>
+                    <p>Move around the map freely with a virtual joystick or teleport to any location.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 14H11V9H13V14ZM13 18H11V16H13V18ZM1 21H23V3H1V21ZM3 5H21V19H3V5Z"/></svg>
                     </div>
-                    <div class="screenshot-item">
-                        <img src="post-3.webp" alt="Live Event Map">
+                    <h3>Enhanced Catch</h3>
+                    <p>Improve your catch rate and secure those rare Pokémon with precision throws.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15c-2.76 0-5-2.24-5-5h2c0 1.66 1.34 3 3 3s3-1.34 3-3h2c0 2.76-2.24 5-5 5zm-3-5h-2c0-2.76 2.24-5 5-5s5 2.24 5 5h-2c0-1.66-1.34-3-3-3s-3 1.34-3 3z"/></svg>
                     </div>
+                    <h3>Automated Tasks</h3>
+                    <p>Automate repetitive tasks like spinning Pokéstops and catching Pokémon.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15c-2.76 0-5-2.24-5-5h2c0 1.66 1.34 3 3 3s3-1.34 3-3h2c0 2.76-2.24 5-5 5zm-3-5h-2c0-2.76 2.24-5 5-5s5 2.24 5 5h-2c0-1.66-1.34-3-3-3s-3 1.34-3 3z"/></svg>
+                    </div>
+                    <h3>Location Faking</h3>
+                    <p>Change your GPS location instantly to explore new areas and catch regional Pokémon.</p>
                 </div>
             </div>
-        </section>
+            <div class="version-info">
+                <ul>
+                    <li><strong>Version:</strong> 3.1.2</li>
+                    <li><strong>File Size:</strong> 58.7 MB</li>
+                    <li><strong>Last Updated:</strong> Oct 26, 2023</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-        <section id="why-choose-us">
-            <div class="container">
-                <h2>Why Choose Us?</h2>
-                <div class="why-us-grid">
-                    <div class="why-us-item">
-                        <h3>Reliability</h3>
-                        <p>Our tool is designed for consistent performance and user satisfaction, ensuring a seamless experience.</p>
-                    </div>
-                    <div class="why-us-item">
-                        <h3>Ease of Use</h3>
-                        <p>A user-friendly interface makes it simple for everyone to get started quickly and enjoy the features.</p>
-                    </div>
-                    <div class="why-us-item">
-                        <h3>Dedicated Support</h3>
-                        <p>We are committed to providing assistance and updates to enhance your journey.</p>
-                    </div>
+    <section id="screenshots">
+        <div class="container">
+            <h2>Screenshots</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="spooferx-interface.jpg" alt="Screenshot 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="Picture17.png" alt="Screenshot 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="post-3.webp" alt="Screenshot 3">
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="faq">
-            <div class="container">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <div class="faq-question">What is this tool?</div>
-                        <div class="faq-answer">
-                            <p>This tool provides advanced features for an enhanced gaming experience.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Is it easy to install?</div>
-                        <div class="faq-answer">
-                            <p>Yes, installation is designed to be straightforward for users of all technical levels.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Do you offer updates?</div>
-                        <div class="faq-answer">
-                            <p>We regularly release updates to ensure compatibility and introduce new improvements.</p>
-                        </div>
-                    </div>
+    <section id="why-choose-us">
+        <div class="container">
+            <h2>Why Choose Us?</h2>
+            <div class="why-choose-us-grid">
+                <div class="why-item">
+                    <h3>Reliable Performance</h3>
+                    <p>Our tool is engineered for smooth and consistent performance, ensuring a great experience.</p>
+                </div>
+                <div class="why-item">
+                    <h3>User-Friendly Interface</h3>
+                    <p>Designed with simplicity in mind, our interface makes it easy for anyone to use.</p>
+                </div>
+                <div class="why-item">
+                    <h3>Regular Updates</h3>
+                    <p>We provide frequent updates to keep the tool compatible and introduce new features.</p>
                 </div>
             </div>
-        </section>
-        
-        <section class="contact-us">
-            <div class="container">
-                <h2>Contact Us</h2>
-                <p>Follow us on social media:</p>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/go_pikatchu?utm_source=ig_web_button_share_sheet&igsh=OWRkbmM4cGk2amNy" target="_blank" class="social-icon" aria-label="Instagram">
-                        <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224.1 123.5c-43.9 0-79.5 35.6-79.5 79.5s35.6 79.5 79.5 79.5 79.5-35.6 79.5-79.5-35.6-79.5-79.5-79.5zm2.9 220.6c-49.8 0-80-5.7-93.5-18.7-18.2-17-27.1-41.8-27.1-71.1 0-47.5 25.4-83 67.8-83s67.8 35.5 67.8 83-25.4 83-67.8 83c-13.6 0-33.3-3.6-56.1-8.7zm202.9-106.6c-2.4-7.5-6.6-14-11.8-19.1-5.1-5.1-11.6-9.4-19.1-11.8-19.4-6.3-77.9-6.3-100.8-6.3h-2.1c-22.9 0-81.4 0-100.8 6.3-7.5 2.4-14 6.6-19.1 11.8-5.1 5.1-9.4 11.6-11.8 19.1-6.3 19.4-6.3 77.9-6.3 100.8v2.1c0 22.9 0 81.4 6.3 100.8 2.4 7.5 6.6 14 11.8 19.1 5.1 5.1 11.6 9.4 19.1 11.8 19.4 6.3 77.9 6.3 100.8 6.3h2.1c22.9 0 81.4 0 100.8-6.3 7.5-2.4 14-6.6 19.1-11.8 5.1-5.1 9.4-11.6 11.8-19.1 6.3-19.4 6.3-77.9 6.3-100.8v-2.1c0-22.9 0-81.4-6.3-100.8zm-119.5 255.4h-2.1c-19.8 0-74.8-.4-92.4-6.3-6.4-2.1-11.4-5.5-15-9.1s-6.9-8.6-9.1-15c-5.9-17.6-6.3-72.6-6.3-92.4v-2.1c0-19.8.4-74.8 6.3-92.4 2.1-6.4 5.5-11.4 9.1-15s8.6-6.9 15-9.1c17.6-5.9 72.6-6.3 92.4-6.3h2.1c19.8 0 74.8.4 92.4 6.3 6.4 2.1 11.4 5.5 15 9.1s6.9 8.6 9.1 15c5.9 17.6 6.3 72.6 6.3 92.4v2.1c0 19.8-.4 74.8-6.3 92.4-2.1 6.4-5.5 11.4-9.1 15s-8.6 6.9-15 9.1c-17.6 5.9-72.6 6.3-92.4 6.3zM388.9 0H59.1C26.5 0 0 26.5 0 59.1v329.8C0 485.5 26.5 512 59.1 512h329.8c32.6 0 59.1-26.5 59.1-59.1V59.1C448 26.5 421.5 0 388.9 0zM310.2 121.3c0 10.3-8.3 18.6-18.6 18.6h-34.9c-10.3 0-18.6-8.3-18.6-18.6V86.4c0-10.3 8.3-18.6 18.6-18.6h34.9c10.3 0 18.6 8.3 18.6 18.6v34.9z"/></svg>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>Is this tool free to use?</h3>
+                <p>Yes, our tool is available for free, providing you with all the essential features.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What devices are supported?</h3>
+                <p>Our tool supports a wide range of devices, including both iOS and Android platforms.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How do I get started?</h3>
+                <p>Simply click the "Download Now" button, follow the prompts, and enjoy the features.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-us">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Follow us on social media:</p>
+            <div class="social-icons">
+                <div class="social-icon">
+                    <a href="https://www.instagram.com/go_pikatchu?utm_source=ig_web_button_share_sheet&igsh=OWRkbmM4cGk2amNy" target="_blank">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.322 2.872c-.899-.02-1.22-.03-3.08-.03s-2.181.01-3.08.03c-1.897.04-2.613.2-3.238.452-.61.24-.954.512-1.303.957-.348.445-.589.873-.836 1.487-.248.614-.403 1.34-.452 3.237-.02.899-.03 1.22-.03 3.08s.01 2.181.03 3.08c.04 1.897.2 2.613.452 3.238.24.61.512.954.957 1.303.445.348.873.589 1.487.836.614.248 1.34.403 3.237.452.899.02 1.22.03 3.08.03s2.181-.01 3.08-.03c1.897-.04 2.613-.2 3.238-.452.61-.24.954-.512 1.303-.957.348-.445.589-.873.836-1.487.248-.614.403-1.34.452-3.237.02-.899.03-1.22.03-3.08s-.01-2.181-.03-3.08c-.04-1.897-.2-2.613-.452-3.238-.24-.61-.512-.954-.957-1.303-.445-.348-.873-.589-1.487-.836-.614-.248-1.34-.403-3.237-.452zM12 17.5c-3.033 0-5.5-2.467-5.5-5.5S8.967 6.5 12 6.5s5.5 2.467 5.5 5.5-2.467 5.5-5.5 5.5zm5.325-9.675a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm-5.325 7.175c1.88 0 3.5-1.62 3.5-3.5s-1.62-3.5-3.5-3.5-3.5 1.62-3.5 3.5 1.62 3.5 3.5 3.5z"/>
+                        </svg>
                     </a>
-                    <a href="https://www.tiktok.com/@go_pikatchu?is_from_webapp=1&sender_device=pc" target="_blank" class="social-icon" aria-label="TikTok">
-                        <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.4V276a6.1 6.1 0 0 0 6 6h18a6.1 6.1 0 0 0 6-6V191.5a141.6 141.6 0 0 1 190.4 24.3 6 6 0 0 0 8.1-5.9V191.5a6 6 0 0 0 -8.1-5.9c-124.7-18.2-261.2 60.1-261.2 165.7C125 388.9 198.6 448 285.8 448c75.2 0 125.7-46.7 125.7-104.2V279.4a6 6 0 0 0 -6-6c-17-3-37.1-7.8-57.5-12.7A210.1 210.1 0 0 1 448 209.9z"/></svg>
+                </div>
+                <div class="social-icon">
+                    <a href="https://www.tiktok.com/@go_pikatchu?is_from_webapp=1&sender_device=pc" target="_blank">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.001 2.001a10 10 0 0 0-9.999 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12.001 2.001zm0 1.5a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17zM16.5 9.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm2.062 6.75A5.5 5.5 0 0 0 12 18.5a5.5 5.5 0 0 0 2.438-1.25H9.5a.5.5 0 0 1 0-1h5.062a.5.5 0 0 1 0 1h-5.062zM12.001 4.5a.5.5 0 0 1 .5.5v2.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5zM12.001 16a.5.5 0 0 1 .5.5v2.5a.5.5 0 0 1-1 0v-2.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>
                     </a>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
             <p>&copy; 2023 POKEMON GO SPOOFER. All rights reserved.</p>
-            <p class="legal-note">Use responsibly. We do not provide instructions for modifying or circumventing third-party services.</p>
+            <p class="disclaimer">Use responsibly. We do not provide instructions for modifying or circumventing third-party services.</p>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const navToggle = document.querySelector('.nav-toggle');
-            const navBarNav = document.getElementById('navbarNav');
-
-            navToggle.addEventListener('click', function() {
-                navBarNav.classList.toggle('active');
-            });
-
-            // Close nav when a link is clicked (for mobile)
-            document.querySelectorAll('.nav-links a').forEach(item => {
-                item.addEventListener('click', () => {
-                    if (navBarNav.classList.contains('active')) {
-                        navBarNav.classList.remove('active');
-                    }
-                });
-            });
-
-            // FAQ toggle functionality
-            document.querySelectorAll('.faq-question').forEach(question => {
-                question.addEventListener('click', () => {
-                    const answer = question.nextElementSibling;
-                    const isActive = question.classList.toggle('active');
-                    answer.classList.toggle('active');
-
-                    if (isActive) {
-                        answer.style.maxHeight = answer.scrollHeight + "px";
-                    } else {
-                        answer.style.maxHeight = null;
-                    }
-                });
-            });
-        });
+        function toggleMobileNav() {
+            const overlay = document.getElementById('mobileNavOverlay');
+            overlay.classList.toggle('active');
+        }
     </script>
 </body>
 </html>
