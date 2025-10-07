@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POKEMON GO SPOOFER</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-bg: #f9f9f9;
-            --secondary-bg: #ffffff;
-            --text-color: #333;
-            --light-gray: #eee;
-            --border-color: #ddd;
-            --accent-yellow: #ffeb3b;
-            --dark-gray: #555;
-            --shadow: 0 4px 8px rgba(0,0,0,0.05);
+            --primary-bg: #1a1a1a;
+            --secondary-bg: #2a2a2a;
+            --card-bg: #333;
+            --text-color: #f0f0f0;
+            --accent-yellow: #FFD700;
+            --accent-text-dark: #000;
             --border-radius: 8px;
+            --shadow: rgba(0, 0, 0, 0.2);
         }
 
         body {
@@ -25,6 +26,7 @@
             background-color: var(--primary-bg);
             color: var(--text-color);
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         .container {
@@ -33,457 +35,713 @@
             padding: 20px;
         }
 
+        /* Header */
         header {
             background-color: var(--secondary-bg);
-            padding: 15px 20px;
-            box-shadow: var(--shadow);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            padding: 0 20px;
         }
 
-        header .logo {
+        .logo {
             font-size: 24px;
             font-weight: 700;
             color: var(--text-color);
             text-decoration: none;
-            flex-shrink: 0;
-            margin-right: 20px;
         }
 
-        nav {
-            flex-grow: 1;
-            display: flex;
-            justify-content: flex-end;
+        .nav-links {
+            display: none; /* Hidden by default for mobile */
+            list-style: none;
+            margin: 0;
+            padding: 0;
             align-items: center;
-            flex-wrap: wrap;
         }
 
-        nav .nav-item {
-            display: inline-block;
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 60px; /* Adjust based on header height */
+            right: 0;
+            background-color: var(--secondary-bg);
+            width: 100%;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        .nav-links li {
             margin-left: 20px;
-            padding: 8px 15px;
-            text-decoration: none;
+            padding: 10px 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .nav-links a {
             color: var(--text-color);
-            border-radius: var(--border-radius);
-            transition: background-color 0.3s ease;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            transition: color 0.3s ease;
         }
 
-        nav .nav-item:hover {
-            background-color: var(--light-gray);
+        .nav-links a:hover {
+            color: var(--accent-yellow);
         }
 
-        nav .nav-item.highlighted {
+        .nav-toggle {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            position: relative; /* For aligning to the right */
+        }
+        
+        .nav-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        .spoof-tab {
             background-color: var(--accent-yellow);
-            color: #000; /* Pure black */
-            font-weight: 700;
+            color: var(--accent-text-dark);
             padding: 10px 20px;
             border-radius: 50px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-weight: 700;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            white-space: nowrap;
+            display: inline-block; /* To make padding work */
+            margin-left: auto; /* Push to the far right */
         }
 
+        .spoof-tab:hover {
+            background-color: #e6b800;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #e0e0e0, #f0f0f0);
             text-align: center;
-            padding: 80px 20px;
-            margin-bottom: 40px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 3.5em;
             margin-bottom: 15px;
             color: var(--text-color);
             font-weight: 700;
         }
 
         .hero p {
-            font-size: 20px;
-            color: var(--dark-gray);
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            color: #ccc;
             max-width: 700px;
-            margin: 0 auto 30px auto;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .hero .download-btn {
-            display: inline-block;
+        .download-btn {
             background-color: var(--accent-yellow);
-            color: #000; /* Pure black */
-            padding: 15px 40px;
-            font-size: 22px;
+            color: var(--accent-text-dark);
+            padding: 18px 40px;
+            font-size: 1.2em;
             font-weight: 700;
             text-decoration: none;
             border-radius: 50px;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            display: inline-block;
         }
 
-        .hero .download-btn:hover {
-            background-color: #fdd835;
-            transform: translateY(-2px);
+        .download-btn:hover {
+            background-color: #e6b800;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px var(--shadow);
         }
 
+        /* Section Styling */
         section {
-            background-color: var(--secondary-bg);
-            padding: 40px;
-            margin-bottom: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--primary-bg);
         }
 
-        h2 {
-            font-size: 32px;
-            text-align: center;
-            margin-bottom: 40px;
+        section:nth-of-type(even) {
+            background-color: var(--secondary-bg);
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 60px;
             color: var(--text-color);
             font-weight: 700;
+            position: relative;
+            display: inline-block;
         }
 
+        section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-yellow);
+            border-radius: 2px;
+        }
+
+        /* Features */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            text-align: center;
+            margin-top: 60px;
         }
 
         .feature-item {
-            padding: 25px;
+            background-color: var(--card-bg);
+            padding: 30px;
             border-radius: var(--border-radius);
-            background-color: var(--primary-bg);
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .feature-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px var(--shadow);
         }
 
-        .feature-item .icon {
+        .feature-icon {
+            margin-bottom: 20px;
             width: 60px;
             height: 60px;
-            margin: 0 auto 20px auto;
-            border-radius: 50%;
             background-color: var(--accent-yellow);
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 30px;
-            color: #000;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--accent-text-dark);
+            font-size: 2.2em;
             font-weight: 700;
         }
 
         .feature-item h3 {
-            font-size: 22px;
+            font-size: 1.4em;
             margin-bottom: 10px;
             color: var(--text-color);
         }
 
+        .feature-item p {
+            color: #ccc;
+        }
+
+        /* Version Info */
         .version-info {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-            padding: 20px;
-            background-color: var(--light-gray);
+            background-color: var(--card-bg);
+            padding: 30px;
             border-radius: var(--border-radius);
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px var(--shadow);
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
         }
 
-        .version-info div {
+        .version-item {
             text-align: center;
+            margin: 10px;
         }
 
-        .version-info span {
+        .version-item strong {
             display: block;
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 1.2em;
+            margin-bottom: 5px;
             color: var(--text-color);
         }
 
-        .version-info small {
-            font-size: 14px;
-            color: var(--dark-gray);
+        .version-item span {
+            color: #ccc;
         }
 
+        /* Screenshot Gallery */
         .screenshot-gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 30px;
+            margin-top: 60px;
         }
 
-        .screenshot-gallery img {
-            width: 100%;
-            max-width: 350px;
+        .screenshot-item img {
+            max-width: 100%;
             height: auto;
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: transform 0.3s ease;
+            max-height: 400px; /* Limit height for uniform look */
+            object-fit: cover;
         }
 
-        .screenshot-gallery img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        .screenshot-item img:hover {
+            transform: scale(1.03);
         }
 
-        .why-choose-us ul {
-            list-style: none;
-            padding: 0;
+        /* Why Choose Us */
+        .why-us-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 30px;
+            margin-top: 60px;
         }
 
-        .why-choose-us li {
-            background-color: var(--primary-bg);
-            padding: 20px;
+        .why-us-item {
+            background-color: var(--card-bg);
+            padding: 30px;
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
+            box-shadow: 0 5px 15px var(--shadow);
+            text-align: left;
+            transition: transform 0.3s ease;
         }
 
-        .why-choose-us li::before {
-            content: '✓';
-            color: green;
-            font-weight: bold;
-            font-size: 20px;
-            line-height: 1;
-            margin-top: 2px;
+        .why-us-item:hover {
+            transform: translateY(-5px);
         }
 
-        .faq-item {
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
-        }
-
-        .faq-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .faq-item h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
+        .why-us-item h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
             color: var(--text-color);
         }
 
-        .faq-item p {
-            color: var(--dark-gray);
+        .why-us-item p {
+            color: #ccc;
         }
 
+        /* FAQ */
+        .faq-list {
+            margin-top: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        .faq-item {
+            background-color: var(--card-bg);
+            margin-bottom: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 10px var(--shadow);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            font-size: 1.1em;
+            color: var(--text-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #444;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            color: #ccc;
+        }
+
+        .faq-answer.active {
+            max-height: 150px; /* Adjust as needed for content */
+            padding-bottom: 20px;
+        }
+
+        /* Contact Us */
         .contact-us {
             text-align: center;
-            padding-bottom: 40px;
+            padding: 80px 0;
+            background-color: var(--primary-bg);
         }
 
-        .contact-us .social-icons {
-            margin-top: 20px;
+        .contact-us h2 {
+            margin-bottom: 30px;
+        }
+
+        .social-icons {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
+            margin-top: 30px;
         }
 
-        .contact-us .social-icon {
+        .social-icon {
             width: 50px;
             height: 50px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 3px 10px var(--shadow);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px var(--shadow);
+        }
+
+        .social-icon svg {
+            width: 30px;
+            height: 30px;
             fill: var(--text-color);
-            transition: fill 0.3s ease, transform 0.3s ease;
         }
 
-        .contact-us .social-icon:hover {
-            fill: var(--accent-yellow);
-            transform: scale(1.1);
-        }
-
+        /* Footer */
         footer {
+            background-color: var(--secondary-bg);
+            color: #999;
             text-align: center;
             padding: 30px 20px;
-            margin-top: 40px;
-            background-color: var(--secondary-bg);
-            color: var(--dark-gray);
-            font-size: 14px;
-            border-top: 1px solid var(--light-gray);
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.03);
+            font-size: 0.9em;
+            border-top: 1px solid #444;
         }
 
-        /* Mobile responsiveness */
+        .legal-note {
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* Mobile specific styling */
         @media (max-width: 768px) {
-            header {
+            .navbar {
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .logo {
+                margin-right: auto;
+            }
+
+            .nav-links {
                 flex-direction: column;
-                align-items: flex-start;
-            }
-            nav {
                 width: 100%;
-                justify-content: center;
-                margin-top: 15px;
+                background-color: var(--secondary-bg);
+                position: absolute;
+                top: 70px; /* Below the header */
+                left: 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+                border-top: 1px solid #444;
+                display: none; /* Hide by default */
             }
-            nav .nav-item {
-                margin: 0 10px 10px 10px;
+
+            .nav-links.active {
+                display: flex; /* Show when active */
             }
-            nav .nav-item.highlighted {
-                margin-bottom: 10px;
+
+            .nav-links li {
+                margin: 0;
+                border-bottom: 1px solid #333;
             }
-            .hero {
-                padding: 60px 20px;
+
+            .nav-links li:last-child {
+                border-bottom: none;
             }
+
+            .nav-links a {
+                display: block;
+                padding: 15px 20px;
+                text-align: left;
+            }
+
+            .nav-toggle {
+                display: block; /* Show hamburger icon */
+            }
+            
+            .spoof-tab {
+                margin-left: 0; /* No margin-left auto on small screens */
+                order: 1; /* Keep it in the flow */
+                width: auto; /* Adjust width */
+            }
+
             .hero h1 {
-                font-size: 38px;
+                font-size: 2.5em;
             }
+
             .hero p {
-                font-size: 18px;
+                font-size: 1em;
             }
-            .hero .download-btn {
-                font-size: 20px;
-                padding: 12px 30px;
+
+            section {
+                padding: 60px 0;
             }
-            h2 {
-                font-size: 28px;
+
+            section h2 {
+                font-size: 2em;
+                margin-bottom: 40px;
             }
-            .features-grid {
+
+            .features-grid, .why-us-grid {
                 grid-template-columns: 1fr;
             }
-            .why-choose-us ul {
-                grid-template-columns: 1fr;
+
+            .screenshot-item img {
+                max-height: 300px;
             }
+
             .version-info {
                 flex-direction: column;
-                gap: 20px;
             }
-            .screenshot-gallery img {
-                max-width: 100%;
+
+            .version-item {
+                margin-bottom: 15px;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .nav-links {
+                display: flex; /* Always show on desktop */
+            }
+            .nav-toggle {
+                display: none; /* Hide hamburger on desktop */
+            }
+            .spoof-tab {
+                margin-left: 20px; /* Add space on desktop */
+                order: initial; /* Reset order */
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <a href="#" class="logo">POKEMON GO SPOOFER</a>
-        <nav>
-            <a href="#hero" class="nav-item">Home</a>
-            <a href="#features" class="nav-item">Features</a>
-            <a href="#screenshots" class="nav-item">Screenshots</a>
-            <a href="#faq" class="nav-item">FAQ</a>
-            <a href="https://applocked.org/cl/i/1x566e" target="_blank" class="nav-item highlighted">POKEMON GO SPOOFER</a>
-        </nav>
+        <div class="navbar container">
+            <a href="#" class="logo">POKEMON GO SPOOFER</a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <ul class="nav-links" id="navbarNav">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#screenshots">Screenshots</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="https://applocked.org/cl/i/1x566e" target="_blank" class="spoof-tab">POKEMON GO SPOOFER</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main class="container">
-        <section id="hero" class="hero">
-            <h1>Play Anywhere, Anytime!</h1>
-            <p>With our spoofer you get a full set of tools to help you be the best for free.</p>
-            <a href="https://applocked.org/cl/i/1x566e" target="_blank" class="download-btn">Download Now</a>
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Play Anywhere, Anytime!</h1>
+                <p>With our spoofer you get a full set of tools to help you be the best for free.</p>
+                <a href="https://applocked.org/cl/i/1x566e" target="_blank" class="download-btn">Download Now</a>
+            </div>
         </section>
 
         <section id="features">
-            <h2>Key Features</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="icon">📍</div>
-                    <h3>Location Spoofing</h3>
-                    <p>Teleport to any location in the world instantly and catch rare Pokémon.</p>
+            <div class="container">
+                <h2>Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">✨</div>
+                        <h3>Advanced Spoofing</h3>
+                        <p>Teleport to any location instantly with precision.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🚀</div>
+                        <h3>Fast Catch</h3>
+                        <p>Optimize your catching speed for maximum efficiency.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Enhanced Radar</h3>
+                        <p>Locate rare Pokémon and lucrative raids easily.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Secure & Stable</h3>
+                        <p>Enjoy a smooth experience with robust performance.</p>
+                    </div>
                 </div>
-                <div class="feature-item">
-                    <div class="icon">⚡</div>
-                    <h3>Enhanced Catch Rate</h3>
-                    <p>Improve your chances of catching Pokémon with advanced tools.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="icon">🚀</div>
-                    <h3>Speed Control</h3>
-                    <p>Adjust your in-game walking speed for efficient exploration and egg hatching.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="icon">💎</div>
-                    <h3>Shiny Radar</h3>
-                    <p>Never miss a shiny again with real-time notifications for nearby rare Pokémon.</p>
-                </div>
-            </div>
-            <div class="version-info">
-                <div>
-                    <span>Version 2.7.1</span>
-                    <small>Latest Release</small>
-                </div>
-                <div>
-                    <span>25.5 MB</span>
-                    <small>File Size</small>
-                </div>
-                <div>
-                    <span>Windows, Android, iOS</span>
-                    <small>Compatible Platforms</small>
+                <div class="version-info">
+                    <div class="version-item">
+                        <strong>Version:</strong>
+                        <span>5.2.1</span>
+                    </div>
+                    <div class="version-item">
+                        <strong>File Size:</strong>
+                        <span>75 MB</span>
+                    </div>
+                    <div class="version-item">
+                        <strong>Last Updated:</strong>
+                        <span>Oct 26, 2023</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="screenshots">
-            <h2>Screenshots</h2>
-            <div class="screenshot-gallery">
-                <img src="spooferx-interface.jpg" alt="Spoofer Interface">
-                <img src="Picture17.png" alt="In-Game Map View">
-                <img src="post-3.webp" alt="Settings Menu">
+            <div class="container">
+                <h2>Screenshots</h2>
+                <div class="screenshot-gallery">
+                    <div class="screenshot-item">
+                        <img src="spooferx-interface.jpg" alt="Spoofer Interface">
+                    </div>
+                    <div class="screenshot-item">
+                        <img src="Picture17.png" alt="In-game Map View">
+                    </div>
+                    <div class="screenshot-item">
+                        <img src="post-3.webp" alt="Live Event Map">
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="why-choose-us">
-            <h2>Why Choose Us?</h2>
-            <ul>
-                <li>
-                    <div>
-                        <h3>Reliable Performance</h3>
-                        <p>Enjoy stable and consistent performance across all supported devices.</p>
+        <section id="why-choose-us">
+            <div class="container">
+                <h2>Why Choose Us?</h2>
+                <div class="why-us-grid">
+                    <div class="why-us-item">
+                        <h3>Reliability</h3>
+                        <p>Our tool is designed for consistent performance and user satisfaction, ensuring a seamless experience.</p>
                     </div>
-                </li>
-                <li>
-                    <div>
-                        <h3>User-Friendly Interface</h3>
-                        <p>Our intuitive design makes it easy for anyone to use, even beginners.</p>
+                    <div class="why-us-item">
+                        <h3>Ease of Use</h3>
+                        <p>A user-friendly interface makes it simple for everyone to get started quickly and enjoy the features.</p>
                     </div>
-                </li>
-                <li>
-                    <div>
-                        <h3>Regular Updates</h3>
-                        <p>We constantly update our tool to ensure compatibility and add new features.</p>
-                    </div>
-                </li>
-                <li>
-                    <div>
+                    <div class="why-us-item">
                         <h3>Dedicated Support</h3>
-                        <p>Our team is ready to assist you with any questions or issues.</p>
+                        <p>We are committed to providing assistance and updates to enhance your journey.</p>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
         </section>
 
         <section id="faq">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <h3>Is it easy to set up?</h3>
-                <p>Yes, our tool is designed for quick and easy setup, allowing you to get started in minutes.</p>
-            </div>
-            <div class="faq-item">
-                <h3>What devices are supported?</h3>
-                <p>Our tool supports a wide range of devices including Windows PCs, Android phones, and iOS devices.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Do I need any technical knowledge?</h3>
-                <p>No, the tool is designed to be user-friendly and does not require any advanced technical skills to operate.</p>
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">What is this tool?</div>
+                        <div class="faq-answer">
+                            <p>This tool provides advanced features for an enhanced gaming experience.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Is it easy to install?</div>
+                        <div class="faq-answer">
+                            <p>Yes, installation is designed to be straightforward for users of all technical levels.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Do you offer updates?</div>
+                        <div class="faq-answer">
+                            <p>We regularly release updates to ensure compatibility and introduce new improvements.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-
+        
         <section class="contact-us">
-            <h2>Contact Us</h2>
-            <p>Follow us on social media:</p>
-            <div class="social-icons">
-                <a href="https://www.instagram.com/go_pikatchu?utm_source=ig_web_button_share_sheet&igsh=OWRkbmM4cGk2amNy" target="_blank">
-                    <svg class="social-icon" viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.071 1.17.055 1.805.249 2.227.462.54.275.955.639 1.304.988.35.349.714.764.989 1.304.213.422.406 1.057.462 2.227.06 1.266.071 1.646.071 4.85s-.012 3.585-.071 4.85c-.055 1.17-.249 1.805-.462 2.227-.275.54-.639.955-.989 1.304-.349.35-.764.714-1.304.989-.422.213-1.057.406-2.227.462-1.267.06-1.646.071-4.85.071s-3.585-.012-4.85-.071c-1.17-.055-1.805-.249-2.227-.462-.54-.275-.955-.639-1.304-.989-.35-.349-.714-.764-.989-1.304-.213-.422-.406-1.057-.462-2.227-.06-1.266-.071-1.646-.071-4.85s.012-3.585.071-4.85c.055-1.17.249-1.805.462-2.227.275-.54.639-.955.989-1.304.349-.35.764-.714 1.304-.989.422-.213 1.057-.406 2.227-.462 1.267-.06 1.646-.071 4.85-.071zm0-2.163c-3.259 0-3.667.014-4.947.072-1.31.062-2.104.269-2.684.551-.64.316-1.164.757-1.605 1.198-.44.441-.882.964-1.198 1.604-.282.58-.489 1.374-.551 2.685-.058 1.28-.072 1.688-.072 4.947s.014 3.668.072 4.947c.062 1.31.269 2.104.551 2.685.316.64.757 1.164 1.198 1.604.441.441.964.882 1.604 1.199.58.281 1.374.488 2.685.55s1.688.072 4.947.072 3.668-.014 4.947-.072c1.31-.062 2.104-.269 2.684-.551.64-.316 1.164-.757 1.605-1.198.44-.441.882-.964 1.198-1.604.282-.58.489-1.374.551-2.685.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.062-1.31-.269-2.104-.551-2.684-.316-.64-.757-1.164-1.198-1.605-.441-.44-.964-.882-1.604-1.198-.58-.282-1.374-.489-2.685-.551-1.28-.058-1.688-.072-4.947-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.163c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.44.644-1.44 1.44s.644 1.44 1.44 1.44 1.44-.644 1.44-1.44-.644-1.44-1.44-1.44z"/>
-                    </svg>
-                </a>
-                <a href="https://www.tiktok.com/@go_pikatchu?is_from_webapp=1&sender_device=pc" target="_blank">
-                    <svg class="social-icon" viewBox="0 0 24 24">
-                        <path d="M12.525 2.152a1.096 1.096 0 00-.916.143 1.055 1.055 0 00-.518.816v8.428a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502H8.557a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3.472a.5.5 0 01-.502-.502v-2.336a.5.5 0 00-.502-.502H3.58a.5.5 0 00-.502.502v6.621c0 3.012 2.766 5.46 6.177 5.46 3.411 0 6.176-2.448 6.176-5.46V8.127a.5.5 0 00-.502-.502h-3.472a.5.5 0 00-.502.502v2.336a.5.5 0 01-.502.502h-3
+            <div class="container">
+                <h2>Contact Us</h2>
+                <p>Follow us on social media:</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/go_pikatchu?utm_source=ig_web_button_share_sheet&igsh=OWRkbmM4cGk2amNy" target="_blank" class="social-icon" aria-label="Instagram">
+                        <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224.1 123.5c-43.9 0-79.5 35.6-79.5 79.5s35.6 79.5 79.5 79.5 79.5-35.6 79.5-79.5-35.6-79.5-79.5-79.5zm2.9 220.6c-49.8 0-80-5.7-93.5-18.7-18.2-17-27.1-41.8-27.1-71.1 0-47.5 25.4-83 67.8-83s67.8 35.5 67.8 83-25.4 83-67.8 83c-13.6 0-33.3-3.6-56.1-8.7zm202.9-106.6c-2.4-7.5-6.6-14-11.8-19.1-5.1-5.1-11.6-9.4-19.1-11.8-19.4-6.3-77.9-6.3-100.8-6.3h-2.1c-22.9 0-81.4 0-100.8 6.3-7.5 2.4-14 6.6-19.1 11.8-5.1 5.1-9.4 11.6-11.8 19.1-6.3 19.4-6.3 77.9-6.3 100.8v2.1c0 22.9 0 81.4 6.3 100.8 2.4 7.5 6.6 14 11.8 19.1 5.1 5.1 11.6 9.4 19.1 11.8 19.4 6.3 77.9 6.3 100.8 6.3h2.1c22.9 0 81.4 0 100.8-6.3 7.5-2.4 14-6.6 19.1-11.8 5.1-5.1 9.4-11.6 11.8-19.1 6.3-19.4 6.3-77.9 6.3-100.8v-2.1c0-22.9 0-81.4-6.3-100.8zm-119.5 255.4h-2.1c-19.8 0-74.8-.4-92.4-6.3-6.4-2.1-11.4-5.5-15-9.1s-6.9-8.6-9.1-15c-5.9-17.6-6.3-72.6-6.3-92.4v-2.1c0-19.8.4-74.8 6.3-92.4 2.1-6.4 5.5-11.4 9.1-15s8.6-6.9 15-9.1c17.6-5.9 72.6-6.3 92.4-6.3h2.1c19.8 0 74.8.4 92.4 6.3 6.4 2.1 11.4 5.5 15 9.1s6.9 8.6 9.1 15c5.9 17.6 6.3 72.6 6.3 92.4v2.1c0 19.8-.4 74.8-6.3 92.4-2.1 6.4-5.5 11.4-9.1 15s-8.6 6.9-15 9.1c-17.6 5.9-72.6 6.3-92.4 6.3zM388.9 0H59.1C26.5 0 0 26.5 0 59.1v329.8C0 485.5 26.5 512 59.1 512h329.8c32.6 0 59.1-26.5 59.1-59.1V59.1C448 26.5 421.5 0 388.9 0zM310.2 121.3c0 10.3-8.3 18.6-18.6 18.6h-34.9c-10.3 0-18.6-8.3-18.6-18.6V86.4c0-10.3 8.3-18.6 18.6-18.6h34.9c10.3 0 18.6 8.3 18.6 18.6v34.9z"/></svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@go_pikatchu?is_from_webapp=1&sender_device=pc" target="_blank" class="social-icon" aria-label="TikTok">
+                        <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.4V276a6.1 6.1 0 0 0 6 6h18a6.1 6.1 0 0 0 6-6V191.5a141.6 141.6 0 0 1 190.4 24.3 6 6 0 0 0 8.1-5.9V191.5a6 6 0 0 0 -8.1-5.9c-124.7-18.2-261.2 60.1-261.2 165.7C125 388.9 198.6 448 285.8 448c75.2 0 125.7-46.7 125.7-104.2V279.4a6 6 0 0 0 -6-6c-17-3-37.1-7.8-57.5-12.7A210.1 210.1 0 0 1 448 209.9z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 POKEMON GO SPOOFER. All rights reserved.</p>
+            <p class="legal-note">Use responsibly. We do not provide instructions for modifying or circumventing third-party services.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navBarNav = document.getElementById('navbarNav');
+
+            navToggle.addEventListener('click', function() {
+                navBarNav.classList.toggle('active');
+            });
+
+            // Close nav when a link is clicked (for mobile)
+            document.querySelectorAll('.nav-links a').forEach(item => {
+                item.addEventListener('click', () => {
+                    if (navBarNav.classList.contains('active')) {
+                        navBarNav.classList.remove('active');
+                    }
+                });
+            });
+
+            // FAQ toggle functionality
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isActive = question.classList.toggle('active');
+                    answer.classList.toggle('active');
+
+                    if (isActive) {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    } else {
+                        answer.style.maxHeight = null;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
