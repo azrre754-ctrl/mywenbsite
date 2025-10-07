@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon GO Spoofer - Your Trusted Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #1a1a1a;
+            --secondary-bg: #2a2a2a;
+            --card-bg: #333;
+            --text-color: #f0f0f0;
+            --accent-color: #ffcc00; /* Yellow for the tab */
+            --border-color: #444;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--secondary-bg);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 5px var(--shadow-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .cta-tab {
+            background-color: var(--accent-color);
+            color: #000; /* Pure black */
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cta-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="%23222" /><g fill="%23333"><circle cx="10" cy="10" r="5" /><circle cx="30" cy="20" r="5" /><circle cx="50" cy="30" r="5" /><circle cx="70" cy="40" r="5" /><circle cx="90" cy="50" r="5" /><circle cx="10" cy="90" r="5" /><circle cx="30" cy="80" r="5" /><circle cx="50" cy="70" r="5" /><circle cx="70" cy="60" r="5" /><circle cx="90" cy="10" r="5" /></g></svg>') center center / cover no-repeat;
+            text-align: center;
+            padding: 100px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 56px;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            color: #ccc;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .download-btn {
+            background-color: var(--accent-color);
+            color: #000; /* Pure black */
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 22px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--secondary-bg);
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px;
+            margin-bottom: 60px;
+            color: var(--text-color);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -15px;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-item {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 30px;
+            color: #000; /* Pure black */
+        }
+        .feature-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: #000; /* Pure black */
+        }
+
+        .feature-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        .feature-item p {
+            font-size: 18px;
+            color: #bbb;
+        }
+
+        .details-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .detail-item {
+            background-color: var(--card-bg);
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px var(--shadow-color);
+            text-align: center;
+        }
+        .detail-item strong {
+            display: block;
+            font-size: 28px;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+        .detail-item span {
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gallery-item {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid var(--border-color);
+            content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="%23444" /><text x="50" y="55" font-family="Roboto" font-size="16" fill="%23888" text-anchor="middle">Screenshot Placeholder</text></svg>');
+        }
+        .gallery-item p {
+            padding: 15px;
+            font-size: 16px;
+            color: #bbb;
+        }
+
+        .why-choose-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reason-item {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            text-align: left;
+        }
+        .reason-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        .reason-item p {
+            font-size: 18px;
+            color: #bbb;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 50px auto 0 auto;
+            text-align: left;
+        }
+
+        .faq-item {
+            background-color: var(--card-bg);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+        }
+        .faq-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+        .faq-item p {
+            font-size: 18px;
+            color: #bbb;
+        }
+
+        footer {
+            background-color: var(--secondary-bg);
+            color: #aaa;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            font-size: 16px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .legal-note {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* Mobile specific styles */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 30px;
+            color: var(--text-color);
+            order: 2; /* Place after logo */
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .logo {
+                margin-bottom: 15px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                display: none; /* Hidden by default */
+                transition: max-height 0.3s ease-in-out;
+                max-height: 0;
+                overflow: hidden;
+            }
+
+            .nav-links.active {
+                display: flex;
+                max-height: 300px; /* Adjust as needed */
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .cta-tab {
+                margin-top: 20px;
+                width: calc(100% - 40px); /* Full width with padding */
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 25px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .download-btn {
+                font-size: 18px;
+                padding: 15px 30px;
+            }
+
+            h2 {
+                font-size: 34px;
+            }
+
+            .features-grid, .why-choose-us-grid, .gallery-grid, .details-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .detail-item {
+                padding: 15px 20px;
+            }
+            .detail-item strong {
+                font-size: 24px;
+            }
+            .detail-item span {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">TOOL NAME</a>
+            <div class="hamburger" onclick="toggleMobileMenu()">&#9776;</div>
+            <nav>
+                <ul class="nav-links" id="mobileMenu">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#gallery">Screenshots</a></li>
+                    <li><a href="#why-choose-us">Why Us</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="https://applocked.org/cl/i/1x566e" target="_blank" class="cta-tab">POKEMON GO SPOOFER</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Experience Unrivaled Control</h1>
+            <p>Unlock new possibilities with our advanced, secure, and easy-to-use tool. Enhance your experience today.</p>
+            <a href="https://applocked.org/cl/i/1x566e" target="_blank" class="download-btn">Download Now</a>
+        </section>
+
+        <section id="features" class="container">
+            <h2>Core Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <h3>Precision Control</h3>
+                    <p>Enjoy highly accurate and responsive movements with fine-tuned precision.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2h1.17l.76 1.45c-.35.09-.7.14-1.11.14zM12 4.07c3.95.49 7 3.85 7 7.93 0 .62-.08 1.21-.21 1.79L15 9V8c0-1.1-.9-2-2-2h-1.17l-.76-1.45c.35-.09.7-.14 1.11-.14z"/>
+                        </svg>
+                    </div>
+                    <h3>Seamless Integration</h3>
+                    <p>Our tool integrates smoothly for a hassle-free and optimized experience.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-12h2v6h-2zm0 8h2v2h-2z"/>
+                        </svg>
+                    </div>
+                    <h3>User-Friendly Interface</h3>
+                    <p>Designed for simplicity, making it accessible for everyone, from novice to expert.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-3.5-3.5 1.41-1.41L11 14.17l6.09-6.09L18.5 9l-7.5 7.5z"/>
+                        </svg>
+                    </div>
+                    <h3>Regular Updates</h3>
+                    <p>Benefit from continuous improvements and support for the latest changes.</p>
+                </div>
+            </div>
+            <div class="details-row">
+                <div class="detail-item">
+                    <strong>v2.1.0</strong>
+                    <span>Current Version</span>
+                </div>
+                <div class="detail-item">
+                    <strong>15.2 MB</strong>
+                    <span>File Size</span>
+                </div>
+                <div class="detail-item">
+                    <strong>Multi-OS</strong>
+                    <span>Compatibility</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="container">
+            <h2>Screenshots</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img alt="Screenshot 1">
+                    <p>Clean and intuitive design.</p>
+                </div>
+                <div class="gallery-item">
+                    <img alt="Screenshot 2">
+                    <p>Advanced feature overview.</p>
+                </div>
+                <div class="gallery-item">
+                    <img alt="Screenshot 3">
+                    <p>Real-time action panel.</p>
+                </div>
+                <div class="gallery-item">
+                    <img alt="Screenshot 4">
+                    <p>Settings customization.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-choose-us" class="container">
+            <h2>Why Choose Our Tool?</h2>
+            <div class="why-choose-us-grid">
+                <div class="reason-item">
+                    <h3>Reliability</h3>
+                    <p>Our tool is developed with stability in mind, ensuring a consistent and reliable performance for all users.</p>
+                </div>
+                <div class="reason-item">
+                    <h3>Simplicity</h3>
+                    <p>We believe powerful tools should also be easy to use. Our interface is designed for maximum user comfort.</p>
+                </div>
+                <div class="reason-item">
+                    <h3>Dedicated Support</h3>
+                    <p>Our team is committed to providing prompt and helpful support for any questions you might have.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>Is this tool free to use?</h3>
+                    <p>Yes, our base tool is completely free. We are committed to providing accessible solutions.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What operating systems are supported?</h3>
+                    <p>Our tool is designed to be compatible with multiple operating systems, including Windows, macOS, and Linux.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How do I download the tool?</h3>
+                    <p>Simply click on the "Download Now" button in the hero section or the "POKEMON GO SPOOFER" tab in the header to get started.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <p>&copy; 2023 TOOL NAME. All rights reserved.</p>
+            <p class="legal-note">Use responsibly. We do not provide instructions for modifying or circumventing third-party services.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
